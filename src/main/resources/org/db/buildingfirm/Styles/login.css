@@ -1,0 +1,46 @@
+/* Основной фон */
+.root {
+    -fx-background-color: linear-gradient(to right, #f4f4f4, #ffffff);
+}
+
+/* Левая панель с логотипом */
+.left-pane {
+    -fx-background-color: linear-gradient(to bottom, #e2e2e2, #d0d0d0);
+    -fx-border-color: #bdbdbd;
+    -fx-border-width: 0 2px 0 0;
+}
+
+/* Кнопки */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #dbe9ff, #a6c9ff);
+    -fx-background-radius: 8;
+    -fx-text-fill: #2b2b2b;
+    -fx-font-size: 18px;
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 1);
+}
+
+/* Кнопки слева */
+.left-pane .button {
+    -fx-background-color: linear-gradient(to bottom, #fff3b0, #ffd54f);
+}
+
+/* Активная кнопка */
+.button.active {
+    -fx-background-color: linear-gradient(to bottom, #cccccc, #aaaaaa);
+    -fx-text-fill: #444;
+    -fx-font-weight: bold;
+    -fx-effect: none;
+}
+
+/* Поля ввода */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #b0b0b0;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 6 10;
+    -fx-font-size: 16px;
+    -fx-font-family: "Times New Roman";
+}

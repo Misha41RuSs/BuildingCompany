@@ -3,41 +3,82 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<Pane prefHeight="503.0" prefWidth="828.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.LoginController">
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.LoginController">
    <children>
-      <Label layoutX="274.0" layoutY="27.0" text="Войти в аккаунт">
+      <!-- Правая часть -->
+      <Label layoutX="426.0" layoutY="25.0" text="Войти в аккаунт">
          <font>
             <Font name="Times New Roman Bold" size="37.0" />
          </font>
       </Label>
-      <Label layoutX="224.0" layoutY="132.0" text="Логин:">
+
+      <Label layoutX="438.0" layoutY="105.0" text="Логин:">
          <font>
             <Font name="Times New Roman" size="26.0" />
          </font>
       </Label>
-      <Label layoutX="218.0" layoutY="219.0" text="Пароль:">
+
+      <Label layoutX="446.0" layoutY="231.0" text="Пароль:">
          <font>
             <Font name="Times New Roman" size="26.0" />
          </font>
       </Label>
-      <TextField fx:id="loginField" layoutX="322.0" layoutY="129.0">
+
+      <TextField fx:id="loginField" layoutX="438.0" layoutY="151.0" prefHeight="33.0" prefWidth="273.0" />
+      <TextField fx:id="passwordField" layoutX="446.0" layoutY="278.0" prefHeight="33.0" prefWidth="273.0" />
+
+      <Button fx:id="loginButton" layoutX="461.0" layoutY="399.0" onMouseClicked="#auth" prefHeight="54.0" prefWidth="211.0" text="Авторизоваться">
          <font>
-            <Font name="Times New Roman" size="20.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="passwordField" layoutX="322.0" layoutY="216.0">
-         <font>
-            <Font name="Times New Roman" size="20.0" />
-         </font>
-      </TextField>
-      <Button fx:id="loginButton" layoutX="310.0" layoutY="364.0" mnemonicParsing="false" onMouseClicked="#auth" text="Авторизоваться">
-         <font>
-            <Font name="Times New Roman" size="30.0" />
-         </font>
-      </Button>
+            <Font name="Times New Roman" size="13.0" />
+         </font></Button>
+
+      <!-- Левая панель -->
+      <Pane layoutY="0.0" prefHeight="503.0" prefWidth="304.0" styleClass="left-pane">
+         <children>
+            <ImageView fitHeight="79.0" fitWidth="129.0" layoutX="109.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Worker.png" />
+               </image>
+            </ImageView>
+
+            <ImageView fitHeight="54.0" fitWidth="64.0" layoutX="122.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Tools.png" />
+               </image>
+            </ImageView>
+
+            <Label layoutX="28.0" layoutY="23.0" text="Строительная">
+               <font>
+                  <Font name="Times New Roman Bold" size="37.0" />
+               </font>
+            </Label>
+
+            <Label layoutX="92.0" layoutY="72.0" text="фирма">
+               <font>
+                  <Font name="Times New Roman Bold" size="37.0" />
+               </font>
+            </Label>
+
+            <Button fx:id="loginButton1" layoutX="3.0" layoutY="360.0" prefHeight="54.0" prefWidth="296.0" text="Войти" />
+
+            <Button fx:id="registerButton" layoutX="2.0" layoutY="435.0" prefHeight="54.0" prefWidth="296.0" text="Зарегистрироваться" />
+         </children>
+      </Pane>
+      <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="371.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/User.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="54.0" layoutX="379.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Password.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
