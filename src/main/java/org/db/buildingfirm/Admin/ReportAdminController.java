@@ -23,9 +23,7 @@ import java.sql.*;
 public class ReportAdminController {
 
     @FXML private ComboBox<String> buildingComboBox;
-
-    @FXML
-    private Button exportButton;
+    @FXML private CheckBox distinct;
 
     @FXML private TableView<WorkSchedule> scheduleTable;
     @FXML private TableColumn<WorkSchedule, String> startDateColumn;
@@ -45,8 +43,15 @@ public class ReportAdminController {
     @FXML private TableColumn<MaterialUsage, Double> costColumn;
 
     @FXML private Button backButton;
+    @FXML private Button exportButton;
 
     public void initialize() {
+        distinct.setOnAction(e -> {
+            if (buildingComboBox.getValue() != null) {
+                loadMaterials(buildingComboBox.getValue());
+            }
+        });
+
         initColumns();
         loadBuildings();
     }
@@ -137,27 +142,46 @@ public class ReportAdminController {
 
     private void loadMaterials(String building) {
         ObservableList<MaterialUsage> data = FXCollections.observableArrayList();
-        String sql = "SELECT m.Наименование, p.Наименование, rm.Количество, rm.Стоимость " +
+
+        String baseQuery = distinct.isSelected()
+                ? "SELECT m.Наименование, GROUP_CONCAT(DISTINCT p.Наименование SEPARATOR ', ') AS Поставщики, " +
+                "SUM(rm.Количество) AS Количество, SUM(rm.Стоимость) AS Стоимость " +
+                "FROM Расход_материалов rm " +
+                "JOIN Материал m ON rm.ID_материала = m.ID_материала " +
+                "JOIN Поставщик p ON rm.ID_поставщика = p.ID_поставщика " +
+                "JOIN Здание з ON rm.ID_здания = з.ID_здания " +
+                "WHERE з.Наименование = ? " +
+                "GROUP BY m.Наименование"
+                : "SELECT m.Наименование, p.Наименование, rm.Количество, rm.Стоимость " +
                 "FROM Расход_материалов rm " +
                 "JOIN Материал m ON rm.ID_материала = m.ID_материала " +
                 "JOIN Поставщик p ON rm.ID_поставщика = p.ID_поставщика " +
                 "JOIN Здание з ON rm.ID_здания = з.ID_здания " +
                 "WHERE з.Наименование = ?";
+
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pst = conn.prepareStatement(sql)) {
+             PreparedStatement pst = conn.prepareStatement(baseQuery)) {
+
             pst.setString(1, building);
+
             try (ResultSet rs = pst.executeQuery()) {
                 while (rs.next()) {
                     data.add(new MaterialUsage(
-                            rs.getString(1), rs.getString(2), rs.getInt(3), rs.getDouble(4)
+                            rs.getString(1),      // Материал
+                            rs.getString(2),      // Поставщик или поставщики
+                            rs.getInt(3),         // Количество
+                            rs.getDouble(4)       // Стоимость
                     ));
                 }
-                materialTable.setItems(data);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        materialTable.setItems(data);
     }
+
 
     @FXML
     private void exportToExcel() {
@@ -168,16 +192,21 @@ public class ReportAdminController {
 
         if (file != null) {
             try (Workbook workbook = new XSSFWorkbook()) {
-                Sheet scheduleSheet = workbook.createSheet("График работ");
-                Sheet crewSheet = workbook.createSheet("Состав бригад");
-                Sheet materialsSheet = workbook.createSheet("Материалы");
+                Sheet sheet = workbook.createSheet("Отчет по зданию");
+                sheet.getPrintSetup().setLandscape(true); // Горизонтальная ориентация
+                sheet.getPrintSetup().setPaperSize(PrintSetup.A4_PAPERSIZE);
 
-                createSheet(scheduleSheet, scheduleTable);
-                createSheet(crewSheet, crewTable);
-                createSheet(materialsSheet, materialTable);
+                sheet.getPrintSetup().setFitWidth((short) 1);
+                sheet.setFitToPage(true);
 
-                try (FileOutputStream fileOut = new FileOutputStream(file)) {
-                    workbook.write(fileOut);
+                int rowNum = 0;
+
+                rowNum = writeSection(sheet, "График работ", scheduleTable, rowNum, workbook);
+                rowNum = writeSection(sheet, "Состав бригад", crewTable, rowNum + 2, workbook);
+                writeSection(sheet, "Используемые материалы", materialTable, rowNum + 2, workbook);
+
+                try (FileOutputStream out = new FileOutputStream(file)) {
+                    workbook.write(out);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -185,26 +214,64 @@ public class ReportAdminController {
         }
     }
 
-    private <T> void createSheet(Sheet sheet, TableView<T> table) {
-        Row header = sheet.createRow(0);
+    private <T> int writeSection(Sheet sheet, String sectionTitle, TableView<T> table, int startRow, Workbook workbook) {
+        // Стили
+        Font headerFont = workbook.createFont();
+        headerFont.setBold(true);
+        headerFont.setFontHeightInPoints((short) 14);
+
+        CellStyle headerStyle = workbook.createCellStyle();
+        headerStyle.setFont(headerFont);
+        headerStyle.setBorderTop(BorderStyle.MEDIUM);
+        headerStyle.setBorderBottom(BorderStyle.MEDIUM);
+        headerStyle.setBorderLeft(BorderStyle.MEDIUM);
+        headerStyle.setBorderRight(BorderStyle.MEDIUM);
+
+        CellStyle tableHeaderStyle = workbook.createCellStyle();
+        tableHeaderStyle.cloneStyleFrom(headerStyle);
+        tableHeaderStyle.setFont(workbook.createFont());
+        Font tableFont = workbook.createFont();
+        tableFont.setBold(true);
+        tableHeaderStyle.setFont(tableFont);
+
+
+        CellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setBorderTop(BorderStyle.THIN);
+        cellStyle.setBorderBottom(BorderStyle.THIN);
+        cellStyle.setBorderLeft(BorderStyle.THIN);
+        cellStyle.setBorderRight(BorderStyle.THIN);
+
+        // Заголовок раздела
+        Row titleRow = sheet.createRow(startRow);
+        Cell titleCell = titleRow.createCell(0);
+        titleCell.setCellValue(sectionTitle);
+        titleCell.setCellStyle(headerStyle);
+
+        // Заголовки таблицы
+        Row headerRow = sheet.createRow(startRow + 1);
         for (int i = 0; i < table.getColumns().size(); i++) {
-            TableColumn<T, ?> col = table.getColumns().get(i);
-            Cell cell = header.createCell(i);
-            cell.setCellValue(col.getText());
+            Cell cell = headerRow.createCell(i);
+            cell.setCellValue(table.getColumns().get(i).getText());
+            cell.setCellStyle(tableHeaderStyle);
         }
 
+        // Данные таблицы
         for (int i = 0; i < table.getItems().size(); i++) {
-            Row row = sheet.createRow(i + 1);
+            Row row = sheet.createRow(startRow + 2 + i);
             T item = table.getItems().get(i);
             for (int j = 0; j < table.getColumns().size(); j++) {
-                Object cellData = table.getColumns().get(j).getCellData(item);
-                row.createCell(j).setCellValue(cellData != null ? cellData.toString() : "");
+                Object value = table.getColumns().get(j).getCellData(item);
+                Cell cell = row.createCell(j);
+                cell.setCellValue(value != null ? value.toString() : "");
+                cell.setCellStyle(cellStyle);
             }
         }
 
         for (int i = 0; i < table.getColumns().size(); i++) {
             sheet.autoSizeColumn(i);
         }
+
+        return startRow + 2 + table.getItems().size();
     }
 
     @FXML

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -78,5 +79,10 @@
                 <Font name="Times New Roman" size="22.0" />
             </font>
         </Button>
+      <CheckBox fx:id="distinct" layoutX="264.0" layoutY="451.0" mnemonicParsing="false" text="Убрать дубликаты">
+         <font>
+            <Font name="Times New Roman" size="16.0" />
+         </font>
+      </CheckBox>
     </children>
 </AnchorPane>
