@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.Manager.ManagerController">
+    <children>
+        <Label layoutX="347.0" layoutY="31.0" text="Менеджер">
+            <font>
+                <Font name="Times New Roman Bold" size="37.0" />
+            </font>
+        </Label>
+        <Button fx:id="supplyMaterials" layoutX="264.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#showSupplyReport" prefHeight="46.0" prefWidth="313.0" text="Отчет по поставкам">
+            <font>
+                <Font name="Times New Roman" size="25.0" />
+            </font>
+        </Button>
+        <Button fx:id="logoutButton" layoutX="18.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#logout" text="Выйти из аккаунта">
+            <font>
+                <Font name="Times New Roman" size="25.0" />
+            </font>
+        </Button>
+      <Button fx:id="orderMatButton" layoutX="264.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#orderMaterials" prefHeight="46.0" prefWidth="313.0" text="Заказать материалы">
+         <font>
+            <Font name="Times New Roman" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="clientsButton" layoutX="260.0" layoutY="108.0" mnemonicParsing="false" onMouseClicked="#showClients" prefHeight="46.0" prefWidth="313.0" text="Заявки от клиентов">
+         <font>
+            <Font name="Times New Roman" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="processButton" layoutX="261.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#showProcessClients" prefHeight="46.0" prefWidth="313.0" text="Обрабатываемые заявки">
+         <font>
+            <Font name="Times New Roman" size="25.0" />
+         </font>
+      </Button>
+    </children>
+</Pane>

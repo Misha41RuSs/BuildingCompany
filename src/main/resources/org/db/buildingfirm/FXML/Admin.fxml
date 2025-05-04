@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.Admin.AdminController">
+    <children>
+        <Label layoutX="236.0" layoutY="25.0" text="Панель администратора">
+            <font>
+                <Font name="Times New Roman Bold" size="37.0" />
+            </font>
+        </Label>
+        <Button fx:id="statisticsButton" layoutX="284.0" layoutY="303.0" mnemonicParsing="false" onMouseClicked="#showStatistics" prefHeight="46.0" prefWidth="306.0" text="Модуль статистики">
+            <font>
+                <Font name="Times New Roman" size="25.0" />
+            </font>
+        </Button>
+        <Button fx:id="logoutButton" layoutX="26.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#logout" text="Выход">
+            <font>
+                <Font name="Times New Roman" size="25.0" />
+            </font>
+        </Button>
+      <Button fx:id="employees" layoutX="284.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#showEmployees" prefHeight="46.0" prefWidth="306.0" text="Сотрудники">
+         <font>
+            <Font name="Times New Roman" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="crew" layoutX="284.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#showCrews" prefHeight="46.0" prefWidth="306.0" text="Бригады">
+         <font>
+            <Font name="Times New Roman" size="25.0" />
+         </font>
+      </Button>
+    </children>
+</Pane>
