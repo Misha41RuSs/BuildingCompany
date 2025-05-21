@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
@@ -26,20 +27,7 @@ public class ManagerController {
     @FXML
     private Button supplyMaterials;
 
-    @FXML
-    private void logout(MouseEvent event) {
-        try {
-            // Переключаем сцену на экран логина
-            Stage stage = (Stage) logoutButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/db/buildingfirm/FXML/Login.fxml"));
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-            stage.setTitle("Авторизация");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     @FXML
     void showSupplyReport(MouseEvent event) {
@@ -69,5 +57,20 @@ public class ManagerController {
     @FXML
     void showProcessClients(MouseEvent event) {
 
+    }
+
+    @FXML
+    public void logout(ActionEvent event) {
+        try {
+            // Переключаем сцену на экран логина
+            Stage stage = (Stage) logoutButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/db/buildingfirm/FXML/Login.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+            stage.setTitle("Авторизация");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -2,35 +2,56 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.Admin.AdminController">
-    <children>
-        <Label layoutX="236.0" layoutY="25.0" text="Панель администратора">
-            <font>
-                <Font name="Times New Roman Bold" size="37.0" />
-            </font>
-        </Label>
-        <Button fx:id="statisticsButton" layoutX="284.0" layoutY="303.0" mnemonicParsing="false" onMouseClicked="#showStatistics" prefHeight="46.0" prefWidth="306.0" text="Модуль статистики">
-            <font>
-                <Font name="Times New Roman" size="25.0" />
-            </font>
-        </Button>
-        <Button fx:id="logoutButton" layoutX="26.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#logout" text="Выход">
-            <font>
-                <Font name="Times New Roman" size="25.0" />
-            </font>
-        </Button>
-      <Button fx:id="employees" layoutX="284.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#showEmployees" prefHeight="46.0" prefWidth="306.0" text="Сотрудники">
-         <font>
+<AnchorPane prefHeight="503.0" prefWidth="828.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.Admin.AdminController">
+
+    <!-- Левая панель -->
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="503.0" prefWidth="304.0" styleClass="left-pane">
+        <children>
+            <Label layoutX="28.0" layoutY="23.0" text="Администратор">
+                <font>
+                    <Font name="Times New Roman Bold" size="37.0" />
+                </font>
+            </Label>
+            <!-- Иконка администратора -->
+            <ImageView fitHeight="84.0" fitWidth="80.0" layoutX="111.0" layoutY="104.0">
+                <image>
+                    <Image url="@../Images/Engineer.png" />
+                </image>
+            </ImageView>
+            <!-- Кнопка «Выйти» (красная) -->
+            <Button fx:id="logoutButton" layoutX="3.0" layoutY="435.0" onAction="#logout" prefHeight="54.0" prefWidth="296.0" style="-fx-background-color:                            linear-gradient(to bottom, #ff7f7f, #ff4f4f);" styleClass="button" text="Выйти" />
+        </children>
+    </Pane>
+
+    <!-- Правая часть: действия администратора -->
+    <Label layoutX="345.0" layoutY="23.0" text="Панель администратора">
+        <font>
+            <Font name="Times New Roman Bold" size="37.0" />
+        </font>
+    </Label>
+
+    <Button fx:id="employees" layoutX="357.0" layoutY="117.0" onAction="#showEmployees" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                    linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Сотрудники">
+        <font>
             <Font name="Times New Roman" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="crew" layoutX="284.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#showCrews" prefHeight="46.0" prefWidth="306.0" text="Бригады">
-         <font>
+        </font>
+    </Button>
+
+    <Button fx:id="crew" layoutX="357.0" layoutY="218.0" onAction="#showCrews" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                    linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Бригады">
+        <font>
             <Font name="Times New Roman" size="25.0" />
-         </font>
-      </Button>
-    </children>
-</Pane>
+        </font>
+    </Button>
+
+    <Button fx:id="statisticsButton" layoutX="357.0" layoutY="326.0" onAction="#showStatistics" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                    linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Модуль статистики">
+        <font>
+            <Font name="Times New Roman" size="25.0" />
+        </font>
+    </Button>
+
+</AnchorPane>

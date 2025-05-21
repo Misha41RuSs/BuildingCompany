@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
@@ -24,8 +25,9 @@ public class AdminController {
     private Button statisticsButton;
 
 
+
     @FXML
-    void showStatistics(MouseEvent event) {
+    void showStatistics(ActionEvent event) {
         try {
             Stage stage = (Stage) statisticsButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/db/buildingfirm/FXML/ReportAdmin.fxml"));
@@ -41,12 +43,12 @@ public class AdminController {
 
 
     @FXML
-    void showCrews(MouseEvent event) {
+    void showCrews(ActionEvent event) {
 
     }
 
     @FXML
-    void showEmployees(MouseEvent event) {
+    void showEmployees(ActionEvent event) {
 
     }
 

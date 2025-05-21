@@ -2,40 +2,64 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.Manager.ManagerController">
+<AnchorPane prefHeight="503.0" prefWidth="828.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.Manager.ManagerController">
+
     <children>
-        <Label layoutX="347.0" layoutY="31.0" text="Менеджер">
+        <!-- Левая панель -->
+        <Pane layoutX="0.0" layoutY="0.0" prefHeight="503.0" prefWidth="304.0" styleClass="left-pane">
+            <children>
+                <Label layoutX="66.0" layoutY="21.0" text="Менеджер">
+                    <font>
+                        <Font name="Times New Roman Bold" size="37.0" />
+                    </font>
+                </Label>
+                <!-- Иконка менеджера -->
+                <ImageView fitHeight="87.0" fitWidth="89.0" layoutX="108.0" layoutY="88.0">
+                    <image>
+                        <Image url="@../Images/Manager.png" />
+                    </image>
+                </ImageView>
+                <!-- Кнопка «Выйти» (красная) -->
+                <Button fx:id="logoutButton" layoutX="3.0" layoutY="435.0" onAction="#logout" prefHeight="54.0" prefWidth="296.0" style="-fx-background-color:                                linear-gradient(to bottom, #ff7f7f, #ff4f4f);" styleClass="button" text="Выйти" />
+            </children>
+        </Pane>
+
+        <!-- Правая часть: действия менеджера -->
+        <Label layoutX="426.0" layoutY="25.0" text="Менеджерская форма">
             <font>
                 <Font name="Times New Roman Bold" size="37.0" />
             </font>
         </Label>
-        <Button fx:id="supplyMaterials" layoutX="264.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#showSupplyReport" prefHeight="46.0" prefWidth="313.0" text="Отчет по поставкам">
+
+        <Button fx:id="clientsButton" layoutX="374.0" layoutY="106.0" onAction="#showClients" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Заявки от клиентов">
             <font>
                 <Font name="Times New Roman" size="25.0" />
             </font>
         </Button>
-        <Button fx:id="logoutButton" layoutX="18.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#logout" text="Выйти из аккаунта">
+
+        <Button fx:id="processButton" layoutX="374.0" layoutY="192.0" onAction="#showProcessClients" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Обрабатываемые заявки">
             <font>
                 <Font name="Times New Roman" size="25.0" />
             </font>
         </Button>
-      <Button fx:id="orderMatButton" layoutX="264.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#orderMaterials" prefHeight="46.0" prefWidth="313.0" text="Заказать материалы">
-         <font>
-            <Font name="Times New Roman" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="clientsButton" layoutX="260.0" layoutY="108.0" mnemonicParsing="false" onMouseClicked="#showClients" prefHeight="46.0" prefWidth="313.0" text="Заявки от клиентов">
-         <font>
-            <Font name="Times New Roman" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="processButton" layoutX="261.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#showProcessClients" prefHeight="46.0" prefWidth="313.0" text="Обрабатываемые заявки">
-         <font>
-            <Font name="Times New Roman" size="25.0" />
-         </font>
-      </Button>
+
+        <Button fx:id="orderMatButton" layoutX="374.0" layoutY="275.0" onAction="#orderMaterials" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Заказать материалы">
+            <font>
+                <Font name="Times New Roman" size="25.0" />
+            </font>
+        </Button>
+
+        <Button fx:id="supplyMaterials" layoutX="374.0" layoutY="368.0" onAction="#showSupplyReport" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Отчет по поставкам">
+            <font>
+                <Font name="Times New Roman" size="25.0" />
+            </font>
+        </Button>
+
     </children>
-</Pane>
+</AnchorPane>

@@ -2,35 +2,57 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.Client.ClientController">
+<AnchorPane prefHeight="503.0" prefWidth="828.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.Client.ClientController">
     <children>
-        <Label layoutX="274.0" layoutY="27.0" text="Клиентская форма">
+        <!-- Левая панель -->
+        <Pane layoutX="0.0" layoutY="0.0" prefHeight="503.0" prefWidth="304.0" styleClass="left-pane">
+            <children>
+                <Label layoutX="97.0" layoutY="22.0" text="Клиент">
+                    <font>
+                        <Font name="Times New Roman Bold" size="37.0" />
+                    </font>
+                </Label>
+                <!-- Фото клиента -->
+                <ImageView fx:id="clientPhoto" fitHeight="90.0" fitWidth="88.0" layoutX="108.0" layoutY="87.0">
+                    <image>
+                        <Image url="@../Images/Client%20Management.png" />
+                    </image>
+                </ImageView>
+                <!-- Кнопка выхода (красная) -->
+                <Button fx:id="logoutNavButton" layoutX="3.0" layoutY="435.0" onAction="#logout" prefHeight="54.0" prefWidth="296.0" style="-fx-background-color:                                linear-gradient(to bottom, #ff7f7f, #ff4f4f);" styleClass="button" text="Выйти" />
+            </children>
+        </Pane>
+
+        <!-- Правая часть: действия клиента -->
+        <Label layoutX="426.0" layoutY="25.0" text="Клиентская форма">
             <font>
                 <Font name="Times New Roman Bold" size="37.0" />
             </font>
         </Label>
-        <Button fx:id="myOrders" layoutX="231.0" layoutY="210.0" mnemonicParsing="false" onMouseClicked="#showOrders" prefHeight="46.0" prefWidth="406.0" text="Мои заказы">
+
+        <Button fx:id="makeOrderButton" layoutX="369.0" layoutY="119.0" onAction="#makeOrder" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Заказать услугу">
             <font>
                 <Font name="Times New Roman" size="25.0" />
             </font>
         </Button>
-        <Button fx:id="logoutButton" layoutX="26.0" layoutY="427.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="46.0" prefWidth="239.0" text="Выйти из аккаунта">
+
+        <Button fx:id="myOrdersButton" layoutX="369.0" layoutY="206.0" onAction="#showOrders" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Мои заказы">
             <font>
                 <Font name="Times New Roman" size="25.0" />
             </font>
         </Button>
-      <Button fx:id="makeOrdButt" layoutX="234.0" layoutY="119.0" mnemonicParsing="false" onMouseClicked="#makeOrder" prefHeight="46.0" prefWidth="406.0" text="Заказать строительную работу">
-         <font>
-            <Font name="Times New Roman" size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="viewReportsButton" layoutX="230.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#viewReports" prefHeight="46.0" prefWidth="406.0" text="Статистика выполненных заказов">
-         <font>
-            <Font name="Times New Roman" size="25.0" />
-         </font>
-      </Button>
+
+        <Button fx:id="viewReportsButton" layoutX="369.0" layoutY="302.0" onAction="#viewReports" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Статистика заказов">
+            <font>
+                <Font name="Times New Roman" size="25.0" />
+            </font>
+        </Button>
+
     </children>
-</Pane>
+</AnchorPane>

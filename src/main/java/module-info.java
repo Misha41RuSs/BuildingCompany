@@ -6,6 +6,7 @@ module org.db.buildingfirm {
 
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
+    requires java.desktop;
 
 
     exports org.db.buildingfirm;

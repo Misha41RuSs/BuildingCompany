@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="503.0" prefWidth="828.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.RegisterController">
+    <children>
+        <!-- Левая панель -->
+        <Pane layoutX="0.0" layoutY="0.0" prefHeight="503.0" prefWidth="304.0" styleClass="left-pane">
+            <children>
+                <Label layoutX="28.0" layoutY="23.0" text="Строительная">
+                    <font>
+                        <Font name="Times New Roman Bold" size="37.0" />
+                    </font>
+                </Label>
+                <Label layoutX="92.0" layoutY="72.0" text="фирма">
+                    <font>
+                        <Font name="Times New Roman Bold" size="37.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="68.0" fitWidth="77.0" layoutX="109.0" layoutY="143.0">
+                    <image>
+                        <Image url="@../Images/Worker.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="120.0" layoutY="217.0">
+                    <image>
+                        <Image url="@../Images/Tools.png" />
+                    </image>
+                </ImageView>
+                <!-- Кнопки навигации -->
+                <Button fx:id="sideLoginButton" layoutX="3.0" layoutY="360.0" prefHeight="54.0" prefWidth="296.0" text="Войти" />
+                <Button fx:id="registerButton" layoutX="2.0" layoutY="435.0" prefHeight="54.0" prefWidth="296.0" text="Зарегистрироваться" />
+            </children>
+        </Pane>
+
+        <!-- Правая часть: форма регистрации -->
+        <Label layoutX="426.0" layoutY="25.0" text="Регистрация">
+            <font>
+                <Font name="Times New Roman Bold" size="37.0" />
+            </font>
+        </Label>
+
+        <Label layoutX="438.0" layoutY="105.0" text="Логин:">
+            <font>
+                <Font name="Times New Roman" size="26.0" />
+            </font>
+        </Label>
+        <TextField fx:id="loginField" layoutX="438.0" layoutY="151.0" prefHeight="33.0" prefWidth="273.0" />
+        <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="371.0" layoutY="141.0">
+            <image>
+                <Image url="@../Images/User.png" />
+            </image>
+        </ImageView>
+
+        <Label layoutX="438.0" layoutY="211.0" text="Пароль:">
+            <font>
+                <Font name="Times New Roman" size="26.0" />
+            </font>
+        </Label>
+        <PasswordField fx:id="passwordField" layoutX="438.0" layoutY="258.0" prefHeight="33.0" prefWidth="273.0" />
+        <ImageView fitHeight="41.0" fitWidth="43.0" layoutX="382.0" layoutY="251.0">
+            <image>
+                <Image url="@../Images/Password.png" />
+            </image>
+        </ImageView>
+
+        <Label layoutX="438.0" layoutY="306.0" text="Подтвердите пароль:">
+            <font>
+                <Font name="Times New Roman" size="26.0" />
+            </font>
+        </Label>
+        <PasswordField fx:id="confirmPasswordField" layoutX="438.0" layoutY="352.0" prefHeight="33.0" prefWidth="273.0" />
+
+        <Button fx:id="registerActionButton" layoutX="461.0" layoutY="420.0" prefHeight="54.0" prefWidth="211.0" text="Зарегистрироваться" />
+    </children>
+</AnchorPane>
