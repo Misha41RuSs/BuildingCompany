@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
 
 public class ReportAdminController {
 
@@ -44,6 +45,11 @@ public class ReportAdminController {
 
     @FXML private Button backButton;
     @FXML private Button exportButton;
+    private String adminLogin;
+
+    public void setAdminLogin(String login) {
+        this.adminLogin = login;
+    }
 
     public void initialize() {
         distinct.setOnAction(e -> {
@@ -185,34 +191,83 @@ public class ReportAdminController {
 
     @FXML
     private void exportToExcel() {
+        String buildingName = buildingComboBox.getValue();
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Сохранить отчет в Excel");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
         File file = fileChooser.showSaveDialog(exportButton.getScene().getWindow());
 
-        if (file != null) {
-            try (Workbook workbook = new XSSFWorkbook()) {
-                Sheet sheet = workbook.createSheet("Отчет по зданию");
-                sheet.getPrintSetup().setLandscape(true); // Горизонтальная ориентация
-                sheet.getPrintSetup().setPaperSize(PrintSetup.A4_PAPERSIZE);
+        if (file == null) return;
 
-                sheet.getPrintSetup().setFitWidth((short) 1);
-                sheet.setFitToPage(true);
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Отчет по зданию");
+            sheet.getPrintSetup().setLandscape(true);
+            sheet.getPrintSetup().setPaperSize(PrintSetup.A4_PAPERSIZE);
+            sheet.getPrintSetup().setFitWidth((short)1);
+            sheet.setFitToPage(true);
 
-                int rowNum = 0;
+            int rowNum = 0;
 
-                rowNum = writeSection(sheet, "График работ", scheduleTable, rowNum, workbook);
-                rowNum = writeSection(sheet, "Состав бригад", crewTable, rowNum + 2, workbook);
-                writeSection(sheet, "Используемые материалы", materialTable, rowNum + 2, workbook);
+            // 1) Шапочка
+            // 1.1 Автор и дата (как было)
+            Row authorRow = sheet.createRow(rowNum++);
+            authorRow.createCell(0).setCellValue("Сформировал администратор: " + adminLogin);
 
-                try (FileOutputStream out = new FileOutputStream(file)) {
-                    workbook.write(out);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            Row dateRow = sheet.createRow(rowNum++);
+            dateRow.createCell(0).setCellValue("Дата формирования: " + LocalDate.now());
+
+            // 1.2 Заголовок отчёта жирным
+            Font boldFont = workbook.createFont();
+            boldFont.setBold(true);
+            boldFont.setFontHeightInPoints((short) 14);
+
+            CellStyle boldStyle = workbook.createCellStyle();
+            boldStyle.setFont(boldFont);
+
+            Row titleRow = sheet.createRow(rowNum++);
+            Cell titleCell = titleRow.createCell(0);
+            titleCell.setCellValue("Отчет по зданию: " + buildingName);
+            titleCell.setCellStyle(boldStyle);
+
+            // пустая строка
+            rowNum++;
+
+            // 2) Секции (ваш writeSection)
+            rowNum = writeSection(sheet, "График работ", scheduleTable, rowNum, workbook) + 2;
+            rowNum = writeSection(sheet, "Состав бригад",  crewTable,    rowNum, workbook) + 2;
+            rowNum = writeSection(sheet, "Используемые материалы", materialTable, rowNum, workbook) + 2;
+
+            // 3) Подписи
+            // Оставим пару строк пустыми для отступа
+            rowNum += 1;
+
+            // Подпись администратора
+            Row sigAdminRow = sheet.createRow(rowNum++);
+            sigAdminRow.createCell(0).setCellValue("Подпись администратора:");
+            sigAdminRow.createCell(1).setCellValue("____________________");
+
+            // Подпись главы предприятия
+            Row sigHeadRow = sheet.createRow(rowNum++);
+            sigHeadRow.createCell(0).setCellValue("Подпись главы предприятия:");
+            sigHeadRow.createCell(1).setCellValue("____________________");
+
+            // Автоподгонка столбцов (можно чуть ограничить по количеству)
+            for (int i = 0; i < 4; i++) {
+                sheet.autoSizeColumn(i);
             }
+
+            // Сохранить
+            try (FileOutputStream out = new FileOutputStream(file)) {
+                workbook.write(out);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+
 
     private <T> int writeSection(Sheet sheet, String sectionTitle, TableView<T> table, int startRow, Workbook workbook) {
         // Стили

@@ -3,48 +3,75 @@ package org.db.buildingfirm.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import javax.swing.text.html.ImageView;
 import java.io.IOException;
 
 public class ClientController {
 
-    @FXML private Button logoutNavButton;
-    @FXML private Button makeOrderButton;
-    @FXML private Button myOrdersButton;
-    @FXML private Button viewReportsButton;
+    @FXML private ImageView clientPhoto;
+    @FXML private Button    logoutNavButton;
+    @FXML private Button    makeOrderButton;
+    @FXML private Button    myOrdersButton;
+    @FXML private Button    viewReportsButton;
 
-    @FXML
-    private void viewReports(MouseEvent event) {
-
+    private int currentClientId;
+    public void setCurrentClientId(int id) {
+        this.currentClientId = id;
     }
 
     @FXML
-    void makeOrder(MouseEvent event) {
+    void makeOrder(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass()
+                .getResource("/org/db/buildingfirm/FXML/makeOrder.fxml"));
+        Parent root = loader.load();
 
+        MakeOrderController ctrl = loader.getController();
+        ctrl.setCurrentUserId(currentClientId);
+
+        Stage st = (Stage)((Node)event.getSource()).getScene().getWindow();
+        st.setScene(new Scene(root));
+        st.setTitle("Выбор дома");
+        st.show();
     }
 
     @FXML
-    void showOrders(MouseEvent event) {
+    void showOrders(ActionEvent event) throws IOException {
+        // TODO: реализация «Мои заказы»
+        // 1) Загружаем FXML
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/org/db/buildingfirm/FXML/MyOrders.fxml"));
+        Parent root = loader.load();
 
+        // 2) Получаем контроллер и передаём в него ID клиента
+        MyOrdersController ctrl = loader.getController();
+        ctrl.setCurrentClientId(currentClientId);
+
+        // 3) Меняем сцену
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Мои заказы");
+        stage.show();
     }
 
-    public void logout(ActionEvent event) {
-        try {
-            Stage stage = (Stage) logoutNavButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/org/db/buildingfirm/FXML/Login.fxml"));
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-            stage.setTitle("Авторизация");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @FXML
+    void viewReports(ActionEvent event) {
+        // TODO: реализация «Статистика заказов»
+    }
+
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass()
+                .getResource("/org/db/buildingfirm/FXML/Login.fxml"));
+        Parent root = loader.load();
+        Stage st = (Stage)logoutNavButton.getScene().getWindow();
+        st.setScene(new Scene(root));
+        st.setTitle("Авторизация");
+        st.show();
     }
 }

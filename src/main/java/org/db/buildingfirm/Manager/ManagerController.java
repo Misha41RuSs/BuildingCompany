@@ -2,6 +2,8 @@ package org.db.buildingfirm.Manager;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -50,9 +52,24 @@ public class ManagerController {
     }
 
     @FXML
-    void showClients(MouseEvent event) {
+    void showClients(ActionEvent event) throws IOException {
+        // 1) Загружаем FXML
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/org/db/buildingfirm/FXML/MyRequests.fxml"));
+        Parent root = loader.load();
 
+        // 2) (Опционально) передайте в MyRequestsController какие-нибудь параметры,
+        //    например ID менеджера, если он нужен:
+        // MyRequestsController ctrl = loader.getController();
+        // ctrl.setCurrentManagerId(this.currentManagerId);
+
+        // 3) Поменяем сцену
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Заявки от клиентов");
+        stage.show();
     }
+
 
     @FXML
     void showProcessClients(MouseEvent event) {
