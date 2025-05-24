@@ -1,49 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Styles/login.css"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.db.buildingfirm.Admin.CrewManagementController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.Admin.CrewManagementController">
 
     <!-- Левая панель -->
     <Pane layoutX="0" layoutY="0" prefHeight="600" prefWidth="300" styleClass="left-pane">
-        <Label layoutX="50" layoutY="20" text="Администратор">
-            <font><Font name="Times New Roman Bold" size="36"/></font>
+        <Label layoutX="21.0" layoutY="20.0" text="Администратор">
+            <font><Font name="Times New Roman Bold" size="36" /></font>
         </Label>
         <ImageView fitHeight="84" fitWidth="80" layoutX="110" layoutY="90">
-            <image><Image url="@../Images/Engineer.png"/></image>
+            <image><Image url="@../Images/Engineer.png" /></image>
         </ImageView>
-        <Button fx:id="backButton" layoutX="2" layoutY="530" onAction="#goBack"
-                prefHeight="54" prefWidth="296"
-                style="-fx-background-color: linear-gradient(to bottom, #ff7f7f, #ff4f4f);"
-                styleClass="button" text="Назад"/>
+        <Button fx:id="backButton" layoutX="2" layoutY="530" onAction="#goBack" prefHeight="54" prefWidth="296" style="-fx-background-color: linear-gradient(to bottom, #ff7f7f, #ff4f4f);" styleClass="button" text="Назад" />
     </Pane>
 
     <!-- Заголовок -->
-    <Label layoutX="340" layoutY="20" text="Управление бригадами">
-        <font><Font name="Times New Roman Bold" size="34"/></font>
+    <Label layoutX="465.0" layoutY="25.0" text="Управление бригадами">
+        <font><Font name="Times New Roman Bold" size="34" /></font>
     </Label>
 
     <!-- Таблица бригад -->
     <TableView fx:id="tableCrews" layoutX="320" layoutY="90" prefHeight="400" prefWidth="650">
         <columns>
-            <TableColumn fx:id="colId" prefWidth="60" text="ID"/>
-            <TableColumn fx:id="colName" prefWidth="200" text="Название"/>
-            <TableColumn fx:id="colForeman" prefWidth="200" text="Главный рабочий"/>
+            <TableColumn fx:id="colId" prefWidth="60" text="ID" />
+            <TableColumn fx:id="colName" prefWidth="200" text="Название" />
+            <TableColumn fx:id="colForeman" prefWidth="200" text="Главный рабочий" />
         </columns>
     </TableView>
 
     <!-- Кнопки управления -->
-    <Button fx:id="btnAssignForeman" layoutX="320" layoutY="510" text="Назначить главного" onAction="#assignForeman"
-            prefHeight="40" prefWidth="200"/>
-    <Button fx:id="btnSendToProject" layoutX="530" layoutY="510" text="Отправить на объект" onAction="#sendToProject"
-            prefHeight="40" prefWidth="200"/>
+    <Button fx:id="btnAssignForeman" layoutX="320" layoutY="510" onAction="#assignForeman" prefHeight="40" prefWidth="200" text="Назначить главного" />
+    <Button fx:id="btnSendToProject" layoutX="530" layoutY="510" onAction="#sendToProject" prefHeight="40" prefWidth="200" text="Отправить на объект" />
 
 </AnchorPane>
