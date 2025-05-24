@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.db.buildingfirm.Admin.AssignToOrderController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <!-- Заголовок -->
+    <Label layoutX="180" layoutY="20" text="Выбор объекта строительства">
+        <font><Font name="System Bold" size="18"/></font>
+    </Label>
+
+    <!-- Таблица заказов -->
+    <TableView fx:id="tableOrders" layoutX="50" layoutY="60" prefWidth="500" prefHeight="250">
+        <columns>
+            <TableColumn fx:id="colOrderId" text="ID заказа" prefWidth="100"/>
+            <TableColumn fx:id="colAddress" text="Адрес объекта" prefWidth="380"/>
+        </columns>
+    </TableView>
+
+    <!-- Кнопка назначения -->
+    <Button fx:id="assignButton"
+            layoutX="200" layoutY="330"
+            prefWidth="200" prefHeight="40"
+            text="Назначить бригаду"
+            onAction="#assignToOrder"/>
+</AnchorPane>

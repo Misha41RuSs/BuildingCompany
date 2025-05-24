@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.db.buildingfirm.Admin.ChooseForemanController"
+            prefWidth="400" prefHeight="300">
+
+    <TableView fx:id="workerTable" layoutX="20" layoutY="20" prefWidth="360" prefHeight="200">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colName" text="ФИО" prefWidth="300"/>
+        </columns>
+    </TableView>
+
+    <Button layoutX="150" layoutY="240" text="Выбрать" onAction="#confirmSelection"/>
+</AnchorPane>
