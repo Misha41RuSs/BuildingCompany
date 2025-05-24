@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600" prefWidth="1099.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.Manager.ReportSupplyController">
+
+    <!-- Левая панель -->
+    <Pane layoutX="0" layoutY="0" prefHeight="600" prefWidth="300" styleClass="left-pane">
+        <Label layoutX="80" layoutY="20" text="Менеджер">
+            <font><Font name="Times New Roman Bold" size="37" /></font>
+        </Label>
+        <ImageView fitHeight="90" fitWidth="90" layoutX="105" layoutY="90">
+            <image><Image url="@../Images/Manager.png" /></image>
+        </ImageView>
+        <Button fx:id="backButton" layoutX="2" layoutY="520" onAction="#goBack" prefHeight="54" prefWidth="296" style="-fx-background-color: linear-gradient(to bottom, #ff7f7f,#ff4f4f);" styleClass="button" text="Назад" />
+    </Pane>
+
+    <!-- Заголовок -->
+    <Label layoutX="460.0" layoutY="20.0" text="Отчет по поставкам">
+        <font><Font name="Times New Roman Bold" size="37" /></font>
+    </Label>
+
+    <!-- Фильтры -->
+    <Label layoutX="320" layoutY="90" text="С: " />
+    <DatePicker fx:id="dpFrom" layoutX="360" layoutY="85" />
+    <Label layoutX="601.0" layoutY="90.0" text="По: " />
+    <DatePicker fx:id="dpTo" layoutX="630.0" layoutY="85.0" />
+    <CheckBox fx:id="cbGroup" layoutX="877.0" layoutY="93.0" text="Группировать по материалу" />
+
+    <Button fx:id="btnFilter" layoutX="320" layoutY="130" onAction="#applyFilter" text="Применить фильтр" />
+    <Button fx:id="btnExport" disable="true" layoutX="757.0" layoutY="134.0" onAction="#exportExcel" text="Экспорт в Excel" />
+
+    <!-- Добавление новой поставки -->
+    <Button fx:id="btnAdd" layoutX="544.0" layoutY="134.0" onAction="#showAddDialog" text="Добавить поставку" />
+
+    <!-- Таблица -->
+    <TableView fx:id="table" layoutX="320" layoutY="180" prefHeight="380" prefWidth="619.0">
+        <columns>
+            <TableColumn fx:id="colId" prefWidth="60" text="ID" />
+            <TableColumn fx:id="colName" prefWidth="180" text="Материал" />
+            <TableColumn fx:id="colType" prefWidth="140" text="Тип записи" />
+            <TableColumn fx:id="colQty" prefWidth="80" text="Кол-во" />
+            <TableColumn fx:id="colDate" prefWidth="150" text="Дата" />
+        </columns>
+    </TableView>
+</AnchorPane>

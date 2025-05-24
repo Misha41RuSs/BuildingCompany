@@ -10,49 +10,37 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            stylesheets="@../Styles/login.css"
-            fx:controller="org.db.buildingfirm.Manager.MyRequestsController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.db.buildingfirm.Manager.MyRequestsController">
 
     <!-- Левая панель -->
-    <Pane layoutX="0" layoutY="0" prefWidth="300" prefHeight="600" styleClass="left-pane">
+    <Pane layoutX="0" layoutY="0" prefHeight="600" prefWidth="300" styleClass="left-pane">
         <children>
             <Label layoutX="60" layoutY="20" text="Менеджер">
-                <font><Font size="36" name="Times New Roman Bold"/></font>
+                <font><Font name="Times New Roman Bold" size="36" /></font>
             </Label>
-            <ImageView layoutX="105" layoutY="80" fitWidth="90" fitHeight="90">
+            <ImageView fitHeight="90" fitWidth="90" layoutX="105" layoutY="80">
                 <image>
-                    <Image url="@../Images/Manager.png"/>
+                    <Image url="@../Images/Manager.png" />
                 </image>
             </ImageView>
-            <Button fx:id="backButton" layoutX="10" layoutY="520"
-                    prefWidth="280" prefHeight="50"
-                    text="Назад" styleClass="button"
-                    onAction="#goBack"/>
+            <Button fx:id="backButton" layoutX="10" layoutY="520" onAction="#goBack" prefHeight="50" prefWidth="280" styleClass="button" text="Назад" />
         </children>
     </Pane>
 
     <!-- Правая часть: таблица заявок -->
     <Label layoutX="350" layoutY="20" text="Заявки от клиентов">
-        <font><Font size="36" name="Times New Roman Bold"/></font>
+        <font><Font name="Times New Roman Bold" size="36" /></font>
     </Label>
 
-    <TableView fx:id="requestsTable" layoutX="320" layoutY="80"
-               prefWidth="550" prefHeight="400">
+    <TableView fx:id="requestsTable" layoutX="320" layoutY="80" prefHeight="400" prefWidth="550">
         <columns>
-            <TableColumn fx:id="colId"       text="ID заказа"      prefWidth="80"/>
-            <TableColumn fx:id="colLogin"    text="Клиент (login)" prefWidth="120"/>
-            <TableColumn fx:id="colType"     text="Тип дома"       prefWidth="120"/>
-            <TableColumn fx:id="colStatus"   text="Статус"         prefWidth="120"/>
-            <TableColumn fx:id="colCreated"  text="Дата создания"  prefWidth="160"/>
+            <TableColumn fx:id="colId" prefWidth="80" text="ID заказа" />
+            <TableColumn fx:id="colLogin" prefWidth="120" text="Клиент (login)" />
+            <TableColumn fx:id="colType" prefWidth="120" text="Тип дома" />
+            <TableColumn fx:id="colStatus" prefWidth="120" text="Статус" />
+            <TableColumn fx:id="colCreated" prefWidth="160" text="Дата создания" />
         </columns>
     </TableView>
 
-    <Button fx:id="detailsButton" layoutX="680" layoutY="500"
-            text="Показать информацию" prefWidth="190" prefHeight="40"
-            styleClass="button"
-            onAction="#showDetails"
-            disable="true"/>
+    <Button fx:id="detailsButton" disable="true" layoutX="600.0" layoutY="500" onAction="#showDetails" prefHeight="40" prefWidth="270.0" styleClass="button" text="Показать информацию" />
 </AnchorPane>

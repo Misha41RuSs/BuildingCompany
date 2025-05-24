@@ -31,7 +31,7 @@
         </Pane>
 
         <!-- Правая часть: действия менеджера -->
-        <Label layoutX="426.0" layoutY="25.0" text="Менеджерская форма">
+        <Label layoutX="404.0" layoutY="25.0" text="Менеджерская форма">
             <font>
                 <Font name="Times New Roman Bold" size="37.0" />
             </font>
@@ -43,23 +43,22 @@
             </font>
         </Button>
 
-        <Button fx:id="processButton" layoutX="374.0" layoutY="192.0" onAction="#showProcessClients" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Обрабатываемые заявки">
+        <Button fx:id="orderMatButton" layoutX="374.0" layoutY="198.0" onAction="#orderMaterials" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Заказать материалы">
             <font>
                 <Font name="Times New Roman" size="25.0" />
             </font>
         </Button>
 
-        <Button fx:id="orderMatButton" layoutX="374.0" layoutY="275.0" onAction="#orderMaterials" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Заказать материалы">
+        <Button fx:id="supplyMaterials" layoutX="374.0" layoutY="288.0" onAction="#showSupplyReport" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Продвинутый отчет по поставкам">
             <font>
                 <Font name="Times New Roman" size="25.0" />
             </font>
         </Button>
-
-        <Button fx:id="supplyMaterials" layoutX="374.0" layoutY="368.0" onAction="#showSupplyReport" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Отчет по поставкам">
-            <font>
-                <Font name="Times New Roman" size="25.0" />
-            </font>
-        </Button>
+      <Button fx:id="supplyMaterials1" layoutX="374.0" layoutY="379.0" onAction="#showBasicReport" prefHeight="46.0" prefWidth="406.0" style="-fx-background-color:                        linear-gradient(to bottom, #a6c9ff, #dbe9ff);" styleClass="button" text="Базовый отчет по поставкам">
+         <font>
+            <Font name="Times New Roman" size="25.0" />
+         </font>
+      </Button>
 
     </children>
 </AnchorPane>
