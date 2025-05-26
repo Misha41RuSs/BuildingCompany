@@ -16,9 +16,10 @@ import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.db.buildingfirm.DTO.SupplyRecord;
 import org.db.buildingfirm.DatabaseConnection;
 // в начале файла
-import org.db.buildingfirm.Manager.MaterialItem;
+import org.db.buildingfirm.DTO.MaterialItem;
 
 
 import java.io.File;

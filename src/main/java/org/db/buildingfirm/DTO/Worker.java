@@ -1,4 +1,4 @@
-package org.db.buildingfirm.Admin;
+package org.db.buildingfirm.DTO;
 
 import javafx.beans.property.*;
 

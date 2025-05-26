@@ -11,9 +11,11 @@ import javafx.stage.FileChooser;
 import javafx.fxml.FXMLLoader;
 import org.apache.poi.ss.usermodel.Cell;
 import org.db.buildingfirm.DatabaseConnection;
-import org.db.buildingfirm.DTO.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.db.buildingfirm.Utilities.CrewAssignment;
+import org.db.buildingfirm.Utilities.MaterialUsage;
+import org.db.buildingfirm.Utilities.WorkSchedule;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -1,4 +1,4 @@
-package org.db.buildingfirm.DTO;
+package org.db.buildingfirm.Utilities;
 
 public class CrewAssignment {
     private final String lastName;

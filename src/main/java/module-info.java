@@ -14,6 +14,7 @@ module org.db.buildingfirm {
     opens org.db.buildingfirm.Admin to javafx.fxml;
     opens org.db.buildingfirm.Client to javafx.fxml;
     opens org.db.buildingfirm.Manager to javafx.fxml;
-    opens org.db.buildingfirm.DTO to javafx.base;
+    opens org.db.buildingfirm.DTO to javafx.base, javafx.fxml;
+    opens org.db.buildingfirm.Utilities to javafx.base, javafx.fxml;
 
 }

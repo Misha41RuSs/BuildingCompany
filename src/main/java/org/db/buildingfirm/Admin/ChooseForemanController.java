@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.db.buildingfirm.DTO.Worker;
 import org.db.buildingfirm.DatabaseConnection;
 
 import java.sql.*;

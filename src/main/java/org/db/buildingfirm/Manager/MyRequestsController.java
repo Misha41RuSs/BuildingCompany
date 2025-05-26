@@ -9,8 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.db.buildingfirm.DTO.Request;
 import org.db.buildingfirm.DatabaseConnection;
 
 import java.io.IOException;

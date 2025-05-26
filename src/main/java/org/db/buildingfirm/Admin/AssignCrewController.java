@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.db.buildingfirm.DTO.Worker;
 import org.db.buildingfirm.DatabaseConnection;
 
 import java.io.IOException;
